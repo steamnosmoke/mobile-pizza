@@ -5,7 +5,7 @@ import { RootState } from "../store";
 const initialState : TFilterSliceState = {
   categoryId: 0,
   sort: {
-    name: "популярности ↓",
+    name: "popularity ↓",
     sortProperty: "rating",
   },
   sortOpened: false,

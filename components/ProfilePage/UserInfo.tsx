@@ -11,11 +11,11 @@ interface UserInfoProps {
 export const UserInfo = ({ name, email, onEdit }: UserInfoProps) => {
   return (
     <View style={styles.infoBox}>
-      <Text style={styles.name}>{name || "Пользователь"}</Text>
-      <Text style={styles.email}>{email || "Email не указан"}</Text>
+      <Text style={styles.name}>{name || "User"}</Text>
+      <Text style={styles.email}>{email || "Email not specified"}</Text>
 
       <TouchableOpacity style={styles.primaryBtn} onPress={onEdit}>
-        <Text style={styles.primaryText}>Редактировать профиль</Text>
+        <Text style={styles.primaryText}>Edit profile</Text>
       </TouchableOpacity>
     </View>
   );

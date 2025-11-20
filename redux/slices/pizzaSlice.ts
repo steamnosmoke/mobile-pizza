@@ -1,10 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { api } from "../../server/api";
-import {
-  FetchPizzasParams,
-  Pizza,
-  PizzaSliceState,
-} from "../../types/productTypes";
+import { Pizza, PizzaSliceState } from "../../types/productTypes";
 import { RootState } from "../store";
 
 const initialState: PizzaSliceState = {
@@ -13,41 +9,51 @@ const initialState: PizzaSliceState = {
   error: null,
 };
 
+// ==========================
+// Нормализация данных пиццы с учетом структуры данных
+// ==========================
+const normalizePizza = (item: any): Pizza => ({
+  id: String(item.id),
+  name: String(item.name),
+  imageUrl: String(item.imageUrl),
+  price: Array.isArray(item.price) ? item.price : [[0]],
+  sizes: Array.isArray(item.sizes) ? item.sizes : [26, 30, 40],
+  types: Array.isArray(item.types) ? item.types : [0],
+  category: Number(item.category) || 0,
+  rating:
+    typeof item.rating === "string"
+      ? parseFloat(item.rating)
+      : Number(item.rating) || 0,
+});
+
+// ==========================
+// AsyncThunk - загружаем ВСЕ пиццы (без параметров)
+// ==========================
 export const fetchPizzas = createAsyncThunk<
   Pizza[],
-  FetchPizzasParams,
+  void, // Без параметров
   { rejectValue: string }
->("pizza/fetchPizzasStatus", async (params, { rejectWithValue }) => {
+>("pizza/fetchPizzasStatus", async (_, { rejectWithValue }) => {
   try {
-    const { queryString = "" } = params;
-    const { data } = await api.get<Pizza[]>(`/pizzas?${queryString}`);
+    // Загружаем все пиццы без фильтров
+    const { data } = await api.get<any[]>(`/pizzas`);
 
     if (!Array.isArray(data)) {
-      throw new Error("Invalid data format");
+      return rejectWithValue("Invalid data format");
     }
 
-    const normalizedData: Pizza[] = data.map((item: any) => ({
-      id: String(item.id),
-      name: String(item.name),
-      imageUrl: String(item.imageUrl),
-      price:
-        Array.isArray(item.price) && item.price.every(Array.isArray)
-          ? item.price
-          : [[0], [0]],
-      sizes: Array.isArray(item.sizes) ? item.sizes : [26, 30, 40],
-      types: Array.isArray(item.types) ? item.types : [0],
-      category: Number(item.category) || 0,
-      rating: Number(item.rating) || 0,
-    }));
-
-    return normalizedData;
+    return data.map(normalizePizza);
   } catch (err: any) {
-    const errorMessage =
+    const message =
       err.response?.data?.message || err.message || "Failed to fetch pizzas";
-    return rejectWithValue(errorMessage);
+
+    return rejectWithValue(message);
   }
 });
 
+// ==========================
+// Slice
+// ==========================
 const pizzaSlice = createSlice({
   name: "pizza",
   initialState,
@@ -70,24 +76,28 @@ const pizzaSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchPizzas.rejected, (state, action) => {
-        state.items = [];
         state.status = "error";
-        state.error = action.payload || "Unknown error occurred";
+        state.items = [];
+        state.error = action.payload || "Unknown error";
       });
   },
 });
 
+// ==========================
+// Селекторы
+// ==========================
 export const selectPizza = (state: RootState) => state.pizza;
 export const selectPizzaItems = (state: RootState) => state.pizza.items;
-export const selectPizzaById = (id: string) => (state: RootState) =>
-  state.pizza.items.find((item) => item.id === id);
 export const selectPizzaStatus = (state: RootState) => state.pizza.status;
 export const selectPizzaError = (state: RootState) => state.pizza.error;
 
+export const selectPizzaById = (id: string) => (state: RootState) =>
+  state.pizza.items.find((p) => p.id === id);
+
 export const selectPizzaPrice =
-  (id: string, typeIndex: number, sizeIndex: number) => (state: RootState) => {
-    const pizza = state.pizza.items.find((item) => item.id === id);
-    return pizza?.price?.[typeIndex]?.[sizeIndex] || 0;
+  (id: string, type: number, size: number) => (state: RootState) => {
+    const pizza = state.pizza.items.find((p) => p.id === id);
+    return pizza?.price?.[type]?.[size] ?? 0;
   };
 
 export const { resetPizzas } = pizzaSlice.actions;

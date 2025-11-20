@@ -1,25 +1,22 @@
-export type Pizza = {
+export interface Pizza {
   id: string;
   name: string;
-  price: number[][];
   imageUrl: string;
+  price: number[][];
   sizes: number[];
   types: number[];
   category: number;
   rating: number;
-};
+}
 
 export type PizzaStatus = "loading" | "success" | "error";
 
-export type PizzaSliceState = {
+export interface PizzaSliceState {
   items: Pizza[];
-  status: PizzaStatus;
+  status: "loading" | "success" | "error";
   error: string | null;
-};
+}
 
-export type FetchPizzasParams = {
-  queryString?: string;
-};
 
 export type TFilterSliceState = {
   categoryId: number;

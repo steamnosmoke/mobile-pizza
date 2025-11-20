@@ -22,12 +22,12 @@ export const UserForm = ({
   return (
     <View style={styles.form}>
       <View style={styles.field}>
-        <Text style={styles.label}>Имя</Text>
+        <Text style={styles.label}>Name</Text>
         <TextInput
           style={styles.input}
           value={name}
           onChangeText={onChangeName}
-          placeholder="Введите имя"
+          placeholder="Enter имя"
         />
       </View>
 
@@ -37,18 +37,18 @@ export const UserForm = ({
           style={styles.input}
           value={email}
           onChangeText={onChangeEmail}
-          placeholder="Введите email"
+          placeholder="Enter email"
           keyboardType="email-address"
           autoCapitalize="none"
         />
       </View>
 
       <TouchableOpacity style={styles.primaryBtn} onPress={onSave}>
-        <Text style={styles.primaryText}>Сохранить</Text>
+        <Text style={styles.primaryText}>Save</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.secondaryBtn} onPress={onCancel}>
-        <Text style={styles.secondaryText}>Отменить</Text>
+        <Text style={styles.secondaryText}>Cancel</Text>
       </TouchableOpacity>
     </View>
   );

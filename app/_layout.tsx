@@ -68,7 +68,7 @@ const ErrorScreen = ({
     <StatusBar backgroundColor="#fff" barStyle="dark-content" />
     <Text style={styles.errorText}>Ошибка: {error}</Text>
     <TouchableOpacity style={styles.retryButton} onPress={onRetry}>
-      <Text style={styles.retryButtonText}>Повторить</Text>
+      <Text style={styles.retryButtonText}>Retry</Text>
     </TouchableOpacity>
   </SafeAreaView>
 );
@@ -94,7 +94,7 @@ function RootContent() {
       }
     } catch (err) {
       const errorMessage =
-        err instanceof Error ? err.message : "Неизвестная ошибка";
+        err instanceof Error ? err.message : "Unknown Error";
       console.error("Auth check error:", errorMessage);
       setError(errorMessage);
       dispatch(logout());

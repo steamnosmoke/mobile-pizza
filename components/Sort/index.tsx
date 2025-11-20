@@ -1,28 +1,28 @@
 import React from "react";
 import {
-  View,
+  FlatList,
+  Modal,
   Text,
   TouchableOpacity,
-  Modal,
-  FlatList,
+  View,
 } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  toggleSortPopup,
   changeSortType,
   selectFilter,
+  toggleSortPopup,
 } from "../../redux/slices/filterSlice";
 import { styles } from "./styles";
 
 type SortItem = { name: string; sortProperty: string };
 
 export const sorts: SortItem[] = [
-  { name: "популярности ↓", sortProperty: "rating" },
-  { name: "популярности ↑", sortProperty: "-rating" },
-  { name: "цене ↓", sortProperty: "price" },
-  { name: "цене ↑", sortProperty: "-price" },
-  { name: "алфавиту ↓", sortProperty: "name" },
-  { name: "алфавиту ↑", sortProperty: "-name" },
+  { name: "popularity ↓", sortProperty: "-rating" },
+  { name: "popularity ↑", sortProperty: "rating" },
+  { name: "price ↓", sortProperty: "-price" },
+  { name: "price ↑", sortProperty: "price" },
+  { name: "alphabet ↓", sortProperty: "-name" },
+  { name: "alphabet ↑", sortProperty: "name" },
 ];
 
 const Sort: React.FC = () => {
@@ -40,15 +40,13 @@ const Sort: React.FC = () => {
 
   return (
     <View style={styles.wrapper}>
-      {/* Кнопка сортировки */}
       <TouchableOpacity style={styles.label} onPress={togglePopup}>
         <Text style={styles.labelText}>
-          Сортировка по: <Text style={styles.bold}>{sort.name}</Text>
+          Sorting by: <Text style={styles.bold}>{sort.name}</Text>
         </Text>
         <Text style={[styles.arrow, sortOpened && styles.arrowRotated]}>⌃</Text>
       </TouchableOpacity>
 
-      {/* Popup окно сортировки */}
       <Modal
         transparent
         visible={sortOpened}
@@ -64,7 +62,7 @@ const Sort: React.FC = () => {
         <View style={styles.popup}>
           <FlatList
             data={sorts}
-            keyExtractor={(item) => item.sortProperty}
+            keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => setSortType(item)}

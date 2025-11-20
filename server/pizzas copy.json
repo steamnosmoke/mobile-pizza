@@ -2,8 +2,8 @@
   "pizzas": [
     {
       "id": "0",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
-      "name": "Pepperoni Fresh",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.avif",
+      "name": "Пепперони Фреш",
       "types": [
         0,
         1
@@ -25,13 +25,13 @@
           779
         ]
       ],
-      "category": 1,
+      "category": "3",
       "rating": "2"
     },
     {
       "id": "1",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d610d2925109ab2e1c92cc5383c.webp",
-      "name": "Cheesy",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d610d2925109ab2e1c92cc5383c.avif",
+      "name": "Сырная",
       "types": [
         0
       ],
@@ -47,13 +47,13 @@
           579
         ]
       ],
-      "category": 2,
+      "category": "1",
       "rating": "3"
     },
     {
       "id": "2",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6110059795842D40396BCF1E73.webp",
-      "name": "Barbecue Bacon",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6110059795842D40396BCF1E73.avif",
+      "name": "Цыпленок барбекю",
       "types": [
         0,
         1
@@ -75,13 +75,13 @@
           569
         ]
       ],
-      "category": 3,
+      "category": "1",
       "rating": "2"
     },
     {
       "id": "3",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.webp",
-      "name": "Chorizo Hot",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.avif",
+      "name": "Кисло-сладкий цыпленок",
       "types": [
         0,
         1
@@ -103,13 +103,13 @@
           589
         ]
       ],
-      "category": 4,
+      "category": "2",
       "rating": "1"
     },
     {
       "id": "4",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61698827EE9B8DB6D0AEC53410.webp",
-      "name": "Cheeseburger Pizza",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61698827EE9B8DB6D0AEC53410.avif",
+      "name": "Чизбургер-пицца",
       "types": [
         0,
         1
@@ -131,13 +131,13 @@
           675
         ]
       ],
-      "category": 1,
+      "category": "3",
       "rating": "4"
     },
     {
       "id": "5",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EEFB595A197C24BA932A0AD1144AFB.webp",
-      "name": "Hawai Hot",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EEFB595A197C24BA932A0AD1144AFB.avif",
+      "name": "Крэйзи пепперони",
       "types": [
         0
       ],
@@ -153,13 +153,13 @@
           569
         ]
       ],
-      "category": 4,
+      "category": "2",
       "rating": "1"
     },
     {
       "id": "6",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.webp",
-      "name": "Hunter Barbecue",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
+      "name": "Пепперони",
       "types": [
         0,
         1
@@ -181,13 +181,13 @@
           609
         ]
       ],
-      "category": 3,
+      "category": "1",
       "rating": "5"
     },
     {
       "id": "7",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6105EF6690B86FBDE6150B5B0C.webp",
-      "name": "Margherita",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6105EF6690B86FBDE6150B5B0C.avif",
+      "name": "Маргарита",
       "types": [
         0,
         1
@@ -209,13 +209,13 @@
           559
         ]
       ],
-      "category": 2,
+      "category": "4",
       "rating": "5"
     },
     {
       "id": "8",
-      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.webp",
-      "name": "Four Seasons",
+      "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.avif",
+      "name": "Четыре сезона",
       "types": [
         0,
         1
@@ -237,7 +237,7 @@
           649
         ]
       ],
-      "category": 1,
+      "category": "5",
       "rating": "5"
     }
   ],
@@ -247,130 +247,7 @@
       "id": "1",
       "email": "admin",
       "passwordHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
-      "cart": [],
-      "address": {
-        "street": "Пушкина",
-        "house": "1",
-        "apartment": "1",
-        "entrance": "1",
-        "floor": "1",
-        "intercom": "1"
-      },
-      "orders": [
-        {
-          "id": "1763643670165",
-          "userId": "1",
-          "items": [
-            {
-              "id": "0",
-              "name": "Pepperoni Fresh",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
-              "type": 0,
-              "size": 26,
-              "price": 489,
-              "count": 1
-            }
-          ],
-          "address": {
-            "street": "Пушкина",
-            "house": "1",
-            "apartment": "1",
-            "entrance": "1",
-            "floor": "1",
-            "intercom": "1"
-          },
-          "total": 489,
-          "status": "new",
-          "createdAt": "2025-11-20T13:01:10.165Z"
-        },
-        {
-          "id": "1763647457326",
-          "userId": "1",
-          "items": [
-            {
-              "id": "6",
-              "name": "Hunter Barbecue",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.webp",
-              "type": 0,
-              "size": 40,
-              "price": 589,
-              "count": 1
-            }
-          ],
-          "address": {
-            "street": "Пушкина",
-            "house": "1",
-            "apartment": "1",
-            "entrance": "1",
-            "floor": "1",
-            "intercom": "1"
-          },
-          "total": 589,
-          "status": "new",
-          "createdAt": "2025-11-20T14:04:17.326Z"
-        },
-        {
-          "id": "1763648214578",
-          "userId": "1",
-          "items": [
-            {
-              "id": "0",
-              "name": "Pepperoni Fresh",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
-              "type": 1,
-              "size": 30,
-              "price": 645,
-              "count": 2
-            }
-          ],
-          "address": {
-            "street": "Пушкина",
-            "house": "1",
-            "apartment": "1",
-            "entrance": "1",
-            "floor": "1",
-            "intercom": "1"
-          },
-          "total": 1290,
-          "status": "new",
-          "createdAt": "2025-11-20T14:16:54.578Z"
-        },
-        {
-          "id": "1763656227683",
-          "userId": "1",
-          "items": [
-            {
-              "id": "3",
-              "name": "Chorizo Hot",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.webp",
-              "type": 0,
-              "size": 26,
-              "price": 329,
-              "count": 1
-            },
-            {
-              "id": "5",
-              "name": "Hawai Hot",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EEFB595A197C24BA932A0AD1144AFB.webp",
-              "type": 0,
-              "size": 30,
-              "price": 449,
-              "count": 1
-            }
-          ],
-          "address": {
-            "street": "Пушкина",
-            "house": "1",
-            "apartment": "1",
-            "entrance": "1",
-            "floor": "1",
-            "intercom": "1"
-          },
-          "total": 778,
-          "status": "new",
-          "createdAt": "2025-11-20T16:30:27.683Z"
-        }
-      ]
+      "cart": []
     },
     {
       "createdAt": "2025-11-06T18:55:06.405Z",
@@ -396,7 +273,7 @@
             {
               "id": "6",
               "name": "Пепперони",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
               "type": 0,
               "size": 26,
               "price": 349,
@@ -405,7 +282,7 @@
             {
               "id": "7",
               "name": "Маргарита",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6105EF6690B86FBDE6150B5B0C.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D6105EF6690B86FBDE6150B5B0C.avif",
               "type": 0,
               "size": 26,
               "price": 299,
@@ -431,7 +308,7 @@
             {
               "id": "0",
               "name": "Пепперони Фреш",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.avif",
               "type": 0,
               "size": 30,
               "price": 625,
@@ -457,7 +334,7 @@
             {
               "id": "0",
               "name": "Пепперони Фреш",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.avif",
               "type": 0,
               "size": 30,
               "price": 625,
@@ -466,7 +343,7 @@
             {
               "id": "8",
               "name": "Четыре сезона",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.avif",
               "type": 0,
               "size": 30,
               "price": 509,
@@ -475,7 +352,7 @@
             {
               "id": "8",
               "name": "Четыре сезона",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.avif",
               "type": 0,
               "size": 26,
               "price": 389,
@@ -484,7 +361,7 @@
             {
               "id": "8",
               "name": "Четыре сезона",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.avif",
               "type": 0,
               "size": 40,
               "price": 629,
@@ -527,7 +404,7 @@
             {
               "id": "0",
               "name": "Пепперони Фреш",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11ee7d612fc7b7fca5be822752bee1e5.avif",
               "type": 0,
               "size": 26,
               "price": 489,
@@ -570,7 +447,7 @@
             {
               "id": "8",
               "name": "Четыре сезона",
-              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.webp",
+              "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D611ADF5AAD898B8B651186E023.avif",
               "type": 0,
               "size": 26,
               "price": 389,

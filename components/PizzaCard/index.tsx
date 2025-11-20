@@ -1,12 +1,12 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import React, { useCallback, useMemo, useState } from "react";
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addItem, TCartItem } from "../../redux/slices/cartSlice";
 import { RootState } from "../../redux/store";
 import type { Pizza } from "../../types/productTypes";
 import { styles } from "./styles";
 
-const doughTypes = ["тонкое", "традиционное"];
+const doughTypes = ["thin", "traditional"];
 
 interface PizzaCardProps extends Pizza {
   cartCount?: number;
@@ -41,15 +41,6 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
   }, [price, activeTypeIndex, activeSizeIndex]);
 
   const handleAdd = useCallback(() => {
-    if (!user) {
-      Alert.alert(
-        "Требуется авторизация",
-        "Пожалуйста, войдите в аккаунт чтобы добавить товар в корзину",
-        [{ text: "OK", style: "default" }]
-      );
-      return;
-    }
-
     const item: TCartItem = {
       id,
       name,
@@ -63,7 +54,6 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
     dispatch(addItem(item));
   }, [
     dispatch,
-    user,
     id,
     name,
     imageUrl,
@@ -76,7 +66,10 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
   return (
     <View style={styles.card}>
       <View style={styles.content}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <View style={[styles.imageContainer, { backgroundColor: "#fff" }]}>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
+        </View>
+
         <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
           {name}
         </Text>
@@ -104,7 +97,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
             ))}
           </View>
 
-          <View style={styles.row}>
+          <View style={[styles.row, { paddingHorizontal: 0, gap: 0 }]}>
             {sizes.map((size, index) => (
               <TouchableOpacity
                 key={size}
@@ -120,7 +113,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
                     activeSizeIndex === index && styles.optionTextActive,
                   ]}
                 >
-                  {size} см
+                  {size}sm
                 </Text>
               </TouchableOpacity>
             ))}
@@ -131,7 +124,7 @@ const PizzaCard: React.FC<PizzaCardProps> = ({
       <View style={styles.bottom}>
         <Text style={styles.price}>{currentPrice} ₽</Text>
         <TouchableOpacity style={styles.button} onPress={handleAdd}>
-          <Text style={styles.buttonText}>Добавить</Text>
+          <Text style={styles.buttonText}>Add</Text>
           {cartCount > 0 && <Text style={styles.badge}>{cartCount}</Text>}
         </TouchableOpacity>
       </View>

@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { api } from "../../server/api";
 import { styles } from "./styles";
 
@@ -59,20 +53,18 @@ export const OrdersList = ({ isOpen, onToggle, userId }: OrdersListProps) => {
   };
 
   useEffect(() => {
-    if (isOpen) {
-      fetchOrders();
-    }
-  }, [isOpen, userId]);
+    fetchOrders();
+  }, [userId]);
 
-  const renderItem = ({ item }: { item: OrderItem }) => (
-    <View style={styles.orderItem}>
-      <Text style={styles.orderName}>Заказ #{item.id}</Text>
+  const renderItem = (item: OrderItem) => (
+    <View key={String(item.id)} style={styles.orderItem}>
+      <Text style={styles.orderName}>Order #{item.id}</Text>
       <Text style={styles.orderStatus}>{item.status || "—"}</Text>
       <Text style={styles.orderDate}>
         {item.createdAt ? new Date(item.createdAt).toLocaleString() : ""}
       </Text>
-      <Text style={styles.orderDate}>Сумма: {item.total} ₽</Text>
-      <Text style={styles.orderDate}>Позиции: {item.items?.length ?? 0}</Text>
+      <Text style={styles.orderDate}>Summary: {item.total} ₽</Text>
+      <Text style={styles.orderDate}>Items: {item.items?.length ?? 0}</Text>
     </View>
   );
 
@@ -85,10 +77,10 @@ export const OrdersList = ({ isOpen, onToggle, userId }: OrdersListProps) => {
           alignItems: "center",
         }}
       >
-        <Text style={styles.ordersTitle}>Мои заказы ({orders.length})</Text>
+        <Text style={styles.ordersTitle}>My orders ({orders.length})</Text>
         <TouchableOpacity onPress={onToggle}>
           <Text style={{ color: styles.ordersTitle.color }}>
-            {isOpen ? "Свернуть" : "Развернуть"}
+            {isOpen ? "Wrap" : "Unwrap"}
           </Text>
         </TouchableOpacity>
       </View>
@@ -98,15 +90,11 @@ export const OrdersList = ({ isOpen, onToggle, userId }: OrdersListProps) => {
           {loading ? (
             <ActivityIndicator />
           ) : error ? (
-            <Text style={styles.orderStatus}>Ошибка: {error}</Text>
+            <Text style={styles.orderStatus}>Error: {error}</Text>
           ) : orders.length === 0 ? (
-            <Text style={styles.orderStatus}>Заказов пока нет</Text>
+            <Text style={styles.orderStatus}>There are no orders yet</Text>
           ) : (
-            <FlatList
-              data={orders}
-              keyExtractor={(item) => String(item.id)}
-              renderItem={renderItem}
-            />
+            <View>{orders.map(renderItem)}</View>
           )}
         </View>
       )}

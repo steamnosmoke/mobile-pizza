@@ -8,7 +8,7 @@ const cardWidth = (width - padding * 2 - gap) / 2;
 // Высота карточки: можно подогнать — я беру коэффициент от ширины.
 // При необходимости увеличьте/уменьшите коэффициент.
 export const CARD_WIDTH = cardWidth;
-export const CARD_HEIGHT = Math.round(cardWidth * 2.4);
+export const CARD_HEIGHT = Math.round(cardWidth * 2.3);
 
 export const styles = StyleSheet.create({
   wrapper: {

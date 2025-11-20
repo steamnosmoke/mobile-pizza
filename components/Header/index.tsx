@@ -9,7 +9,6 @@ import React, {
 import {
   Image,
   TextInput as RNTextInput,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
@@ -19,6 +18,7 @@ import { setSearchValue } from "../../redux/slices/filterSlice";
 
 import clearIcon from "../../assets/images/icons/clear.png";
 import searchIcon from "../../assets/images/icons/search.png";
+import styles from "./styles";
 
 export default function Search() {
   const [value, setValue] = useState<string>("");
@@ -73,40 +73,3 @@ export default function Search() {
   );
 }
 
-const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    position: "relative",
-    marginTop: 30,
-    marginBottom: 20,
-    width: "100%",
-    borderWidth: 1,
-    borderColor: "#ccc",
-  },
-  icon: {
-    width: 18,
-    height: 18,
-    marginRight: 8,
-    tintColor: "#555",
-  },
-  input: {
-    flex: 1,
-    height: "100%",
-    paddingHorizontal: 8,
-    fontSize: 16,
-    color: "#000",
-  },
-  clearButton: {
-    padding: 4,
-  },
-  clearIcon: {
-    width: 16,
-    height: 16,
-    tintColor: "#555",
-  },
-});

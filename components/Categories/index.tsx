@@ -1,34 +1,18 @@
 import React from "react";
-import {
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeCategory,
-  selectFilter,
-} from "../../redux/slices/filterSlice";
+import { changeCategory, selectFilter } from "../../redux/slices/filterSlice";
 import { styles } from "./styles";
 
-const categories = [
-  "Все",
-  "Мясные",
-  "Вегетарианская",
-  "Гриль",
-  "Острые",
-  "Закрытые",
-];
+const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy"];
 
 const Categories = () => {
   const { categoryId } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-
   const setCategory = (i: number) => {
     dispatch(changeCategory(i));
   };
-
 
   return (
     <View style={styles.container}>

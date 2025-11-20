@@ -13,7 +13,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Главная",
+          title: "Main",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
@@ -22,7 +22,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="cart"
         options={{
-          title: "Корзина",
+          title: "Cart",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart-outline" size={size} color={color} />
           ),
@@ -31,7 +31,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Профиль",
+          title: "Profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),

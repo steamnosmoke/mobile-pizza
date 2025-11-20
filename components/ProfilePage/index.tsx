@@ -1,6 +1,7 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   logout,
   saveUserProfile,
@@ -34,6 +35,12 @@ export default function ProfilePage() {
       intercom: "",
     }
   );
+    const router = useRouter();
+
+  const onLogout = () =>{
+    dispatch(logout());
+    router.push("/(auth)/login")
+  }
 
   useEffect(() => {
     setName(user?.name || "");
@@ -56,7 +63,10 @@ export default function ProfilePage() {
 
   const saveAddress = async () => {
     if (!address.street || !address.house) {
-      Alert.alert("Ошибка", "Улица и номер дома обязательны для заполнения");
+      Alert.alert(
+        "Error",
+        "The street and the house number are required to fill in"
+      );
       return;
     }
 
@@ -69,16 +79,16 @@ export default function ProfilePage() {
           })
         ).unwrap();
         setEditingAddress(false);
-        Alert.alert("✅ Успех", "Адрес доставки обновлен");
+        Alert.alert("✅ Success", "The delivery address has been updated");
       } catch (error: any) {
-        Alert.alert("Ошибка", error?.message || "Не удалось обновить адрес");
+        Alert.alert("Error", error?.message || "Couldn't update address");
       }
     }
   };
 
   const saveProfile = async () => {
     if (!name.trim() || !email.trim()) {
-      Alert.alert("Ошибка", "Имя и email не могут быть пустыми");
+      Alert.alert("Error", "The name and email cannot be empty.");
       return;
     }
 
@@ -88,9 +98,9 @@ export default function ProfilePage() {
           saveUserProfile({ userId: user.id, name, email })
         ).unwrap();
         setEditing(false);
-        Alert.alert("✅ Успех", "Профиль обновлен");
+        Alert.alert("✅ Success", "The profile has been updated");
       } catch (error: any) {
-        Alert.alert("Ошибка", error?.message || "Не удалось сохранить профиль");
+        Alert.alert("Error", error?.message || "Couldn't save data");
       }
     }
   };
@@ -117,7 +127,7 @@ export default function ProfilePage() {
       </View>
 
       <View style={styles.addressBox}>
-        <Text style={styles.sectionTitle}>Адрес доставки</Text>
+        <Text style={styles.sectionTitle}>Delivery Address</Text>
         {editingAddress ? (
           <AddressForm
             address={address}
@@ -139,11 +149,8 @@ export default function ProfilePage() {
         userId={user?.id}
       />
 
-      <TouchableOpacity
-        style={styles.logoutBtn}
-        onPress={() => dispatch(logout())}
-      >
-        <Text style={styles.logoutText}>Выйти из аккаунта</Text>
+      <TouchableOpacity style={styles.logoutBtn} onPress={onLogout}>
+        <Text style={styles.logoutText}>Log out</Text>
       </TouchableOpacity>
     </ScrollView>
   );

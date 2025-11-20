@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import React, { useCallback, useEffect, useMemo } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -8,7 +9,6 @@ import {
   View,
 } from "react-native";
 import errorImg from "../../assets/images/error.png";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectCartItems } from "../../redux/slices/cartSlice";
 import { selectFilter } from "../../redux/slices/filterSlice";
 import {
@@ -27,47 +27,76 @@ import { styles } from "./styles";
 const Main = () => {
   const dispatch = useAppDispatch();
 
-  // Селекторы
   const { categoryId, sort, searchValue } = useAppSelector(selectFilter);
-  const pizzas = useAppSelector(selectPizzaItems);
+  const allPizzas = useAppSelector(selectPizzaItems);
   const status = useAppSelector(selectPizzaStatus);
   const error = useAppSelector(selectPizzaError);
   const cartItems = useAppSelector(selectCartItems);
 
-  // Формируем строку запроса
-  const getQueryString = useCallback(() => {
-    const params = new URLSearchParams();
-
-    if (sort.sortProperty) {
-      const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-      const sorting = sort.sortProperty.replace("-", "");
-      params.append("sortBy", sorting);
-      params.append("order", order);
-    }
+  const filteredAndSortedPizzas = useMemo(() => {
+    let filtered = [...allPizzas];
 
     if (categoryId !== 0) {
-      params.append("category", categoryId.toString());
+      filtered = filtered.filter((pizza) => pizza.category === categoryId);
     }
 
     if (searchValue) {
-      params.append("search", searchValue);
+      const searchLower = searchValue.toLowerCase();
+      filtered = filtered.filter((pizza) =>
+        pizza.name.toLowerCase().includes(searchLower)
+      );
     }
 
-    return params.toString();
-  }, [categoryId, sort.sortProperty, searchValue]);
+    if (sort.sortProperty) {
+      filtered.sort((a, b) => {
+        switch (sort.sortProperty) {
+          case "name":
+            return a.name.localeCompare(b.name);
 
-  // Загрузка пицц
+          case "-name":
+            return b.name.localeCompare(a.name);
+
+          case "price":
+            const priceA = a.price[0]?.[0] || 0;
+            const priceB = b.price[0]?.[0] || 0;
+            return priceA - priceB;
+
+          case "-price":
+            const priceA2 = a.price[0]?.[0] || 0;
+            const priceB2 = b.price[0]?.[0] || 0;
+            return priceB2 - priceA2;
+
+          case "rating":
+            const ratingA =
+              typeof a.rating === "string" ? parseFloat(a.rating) : a.rating;
+            const ratingB =
+              typeof b.rating === "string" ? parseFloat(b.rating) : b.rating;
+            return ratingA - ratingB;
+
+          case "-rating":
+            const ratingA2 =
+              typeof a.rating === "string" ? parseFloat(a.rating) : a.rating;
+            const ratingB2 =
+              typeof b.rating === "string" ? parseFloat(b.rating) : b.rating;
+            return ratingB2 - ratingA2;
+
+          default:
+            return 0;
+        }
+      });
+    }
+
+    return filtered;
+  }, [allPizzas, categoryId, sort.sortProperty, searchValue]);
+
   const loadPizzas = useCallback(async () => {
-    const queryString = getQueryString();
-    dispatch(fetchPizzas({ queryString }));
-  }, [dispatch, getQueryString]);
+    dispatch(fetchPizzas());
+  }, [dispatch]);
 
-  // Первая загрузка и обновление при изменении фильтров
   useEffect(() => {
     loadPizzas();
   }, [loadPizzas]);
 
-  // Очистка при размонтировании
   useEffect(() => {
     return () => {
       dispatch(resetPizzas());
@@ -76,9 +105,7 @@ const Main = () => {
 
   const renderError = () => (
     <View style={styles.notFound}>
-      <Text style={styles.notFoundText}>
-        {error || "Произошла ошибка при загрузке 😕"}
-      </Text>
+      <Text style={styles.notFoundText}>{error || "Error  😕"}</Text>
       <Image source={errorImg} style={styles.notFoundImage} />
     </View>
   );
@@ -87,8 +114,8 @@ const Main = () => {
     <View style={styles.notFound}>
       <Text style={styles.notFoundText}>
         {searchValue
-          ? `По запросу "${searchValue}" ничего не найдено 😕`
-          : "Пицц пока нет 😕"}
+          ? `Nothing was found for the query "${searchValue}"😕`
+          : "There are no pizzas yet 😕"}
       </Text>
       <Image source={errorImg} style={styles.notFoundImage} />
     </View>
@@ -107,13 +134,13 @@ const Main = () => {
       return renderError();
     }
 
-    if (pizzas.length === 0) {
+    if (filteredAndSortedPizzas.length === 0) {
       return renderEmpty();
     }
 
     return (
       <View style={styles.itemsGrid}>
-        {pizzas.map((pizza) => (
+        {filteredAndSortedPizzas.map((pizza) => (
           <PizzaCard
             key={pizza.id}
             {...pizza}
@@ -145,7 +172,7 @@ const Main = () => {
       </View>
 
       <Text style={styles.title}>
-        {searchValue ? `Поиск: "${searchValue}"` : "Все пиццы"}
+        {searchValue ? `Search: "${searchValue}"` : "All Pizzas"}
       </Text>
 
       {renderContent()}

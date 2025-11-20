@@ -18,71 +18,71 @@ export const AddressForm = ({
 }: AddressFormProps) => (
   <View style={styles.form}>
     <View style={styles.field}>
-      <Text style={styles.label}>Улица *</Text>
+      <Text style={styles.label}>Street *</Text>
       <TextInput
         style={styles.input}
         value={address.street}
         onChangeText={(value) => onChangeAddress("street", value)}
-        placeholder="Введите улицу"
+        placeholder="Street"
       />
     </View>
 
     <View style={styles.field}>
-      <Text style={styles.label}>Дом *</Text>
+      <Text style={styles.label}>Building *</Text>
       <TextInput
         style={styles.input}
         value={address.house}
         onChangeText={(value) => onChangeAddress("house", value)}
-        placeholder="Введите номер дома"
+        placeholder="Enter building number"
       />
     </View>
 
     <View style={styles.field}>
-      <Text style={styles.label}>Квартира</Text>
+      <Text style={styles.label}>Flat number</Text>
       <TextInput
         style={styles.input}
         value={address.apartment}
         onChangeText={(value) => onChangeAddress("apartment", value)}
-        placeholder="Введите номер квартиры"
+        placeholder="Enter flat number"
       />
     </View>
 
     <View style={styles.field}>
-      <Text style={styles.label}>Подъезд</Text>
+      <Text style={styles.label}>Entrance</Text>
       <TextInput
         style={styles.input}
         value={address.entrance}
         onChangeText={(value) => onChangeAddress("entrance", value)}
-        placeholder="Введите номер подъезда"
+        placeholder="Enter entrance number"
       />
     </View>
 
     <View style={styles.field}>
-      <Text style={styles.label}>Этаж</Text>
+      <Text style={styles.label}>Floor</Text>
       <TextInput
         style={styles.input}
         value={address.floor}
         onChangeText={(value) => onChangeAddress("floor", value)}
-        placeholder="Введите этаж"
+        placeholder="Enter floor number"
       />
     </View>
 
     <View style={styles.field}>
-      <Text style={styles.label}>Домофон</Text>
+      <Text style={styles.label}>Doorphone</Text>
       <TextInput
         style={styles.input}
         value={address.intercom}
         onChangeText={(value) => onChangeAddress("intercom", value)}
-        placeholder="Код домофона"
+        placeholder="Enter doorphone code"
       />
     </View>
 
     <TouchableOpacity style={styles.primaryBtn} onPress={onSave}>
-      <Text style={styles.primaryText}>Сохранить адрес</Text>
+      <Text style={styles.primaryText}>Save address</Text>
     </TouchableOpacity>
 
     <TouchableOpacity style={styles.secondaryBtn} onPress={onCancel}>
-      <Text style={styles.secondaryText}>Отменить</Text>
+      <Text style={styles.secondaryText}>Cancel</Text>
     </TouchableOpacity>
   </View>
 );

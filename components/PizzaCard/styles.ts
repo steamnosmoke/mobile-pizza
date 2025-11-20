@@ -1,50 +1,54 @@
 import { StyleSheet } from "react-native";
-import { CARD_HEIGHT, CARD_WIDTH } from "../MainPage/styles";
+import { CARD_WIDTH } from "../MainPage/styles";
 
 const imageSize = Math.round(CARD_WIDTH - 24);
 
 export const styles = StyleSheet.create({
   card: {
     width: CARD_WIDTH,
-    height: CARD_HEIGHT,
+    height: 380,
     backgroundColor: "#fff",
     borderRadius: 16,
     padding: 12,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 6,
-    elevation: 3,
-    // распределяем пространство: верхняя часть + фиксированное пространство под снизу
     justifyContent: "space-between",
   },
-  // обёртка для содержимого, чтобы можно было использовать marginTop: 'auto'
   content: {
     width: "100%",
     flexGrow: 1,
   },
-  image: {
+  imageContainer: {
     width: imageSize,
     height: imageSize,
-    resizeMode: "contain",
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#fff", // фон контейнера
     marginBottom: 8,
   },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
+    backgroundColor: "transparent",
+    alignSelf: "center",
+  },
+
   title: {
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 8,
+    height: 36,
   },
   selector: {
     width: "100%",
-    backgroundColor: "#f6f6f6",
+    backgroundColor: "#fff",
     borderRadius: 12,
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 2,
     marginBottom: 8,
-    // НЕ даём селектору бесконечно расти — ограничим высоту и включим прокрутку внутри, если нужно
-    maxHeight: 110, // подберите значение под дизайн (110 — примерно 2 ряда опций)
-    // overflow: "hidden",
+    justifyContent: "space-between",
+    height: 100,
   },
   row: {
     flexDirection: "row",
@@ -55,10 +59,10 @@ export const styles = StyleSheet.create({
   },
   option: {
     paddingVertical: 6,
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
     borderRadius: 8,
     backgroundColor: "#fff",
-    marginHorizontal: 6,
+    marginHorizontal: 4,
     marginVertical: 4,
   },
   optionActive: {
@@ -77,7 +81,6 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // Подвинем вниз: если верхнее содержимое займёт меньше места, bottom будет внизу карточки
     marginTop: "auto",
   },
   price: {
@@ -88,12 +91,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#EB5A1E",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
     borderRadius: 8,
-    // чтобы кнопка была поверх фона селектора, при необходимости
     zIndex: 10,
-    elevation: 6,
   },
   buttonText: {
     color: "#fff",
